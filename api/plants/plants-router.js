@@ -11,6 +11,15 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/:id', (req, res, next) => {
+    Plants.getById(req.params.id)
+    .then(plants=>{
+        res.json(plants)
+    })
+    .catch(next)
+})
+
+
 router.delete('/:plant_id', (req,res,next) =>{
     Plants.del(req.params.plant_id)
     .then(obj=>{

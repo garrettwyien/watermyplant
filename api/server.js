@@ -2,6 +2,9 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const db = require('./data/db-config')
+const plantsRouter = require('./plants/plants-router')
+const usersRouter = require('./users/users-router')
+
 
 function getAllUsers() { return db('users') }
 
@@ -17,6 +20,8 @@ const server = express()
 server.use(express.json())
 server.use(helmet())
 server.use(cors())
+server.use('/api/plants', plantsRouter)
+server.use('/api/users', usersRouter)
 
 server.get('/api/users', async (req, res) => {
   res.json(await getAllUsers())
@@ -24,6 +29,12 @@ server.get('/api/users', async (req, res) => {
 
 server.post('/api/users', async (req, res) => {
   res.status(201).json(await insertUser(req.body))
+})
+
+server.use((err, req, res, next) => {
+  res.status(err.status || 500).json({
+    message: err.message
+  })
 })
 
 module.exports = server

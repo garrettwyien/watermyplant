@@ -1,6 +1,6 @@
 const db = require('../data/db-config')
 
-function get() {
+function find() {
     return db('users')
 }
 
@@ -11,8 +11,8 @@ async function add(newUser){
 }
 
 module.exports ={
-    get,
-    // getBy,
+    find,
+    // findBy,
     // add,
     // edit,
 };

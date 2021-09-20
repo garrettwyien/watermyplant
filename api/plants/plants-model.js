@@ -1,18 +1,18 @@
 const db = require('../data/db-config');
 
-function get(){
+function find(){
     return db("plants")
     .select('plants.nickname', 'plants.species', 'plants.h2oFrequency');
 }
 
-function getById(plant_id){
+function findById(plant_id){
     return db("plants")
     .where({ plant_id })
     .first();
 }
 
 const del = async plant_id => {
-    const removeObj = await getById(plant_id);
+    const removeObj = await findById(plant_id);
     await db('plants')
       .where('plant_id', plant_id)
       .del()
@@ -20,8 +20,8 @@ const del = async plant_id => {
   }
 
 module.exports ={
-    get,
-    getById,
+    find,
+    findById,
     // add,
     // edit,
     del

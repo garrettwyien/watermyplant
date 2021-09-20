@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/', async (req, res) => {
-    res.json(await Users.get())
+    res.json(await Users.find())
 })
   
 router.post('/', async (req, res) => {

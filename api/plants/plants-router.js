@@ -1,10 +1,9 @@
-const { json } = require('express');
 const express = require('express');
 const Plants = require('./plants-model');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    Plants.get()
+    Plants.find()
     .then(plants=>{
         res.json(plants)
     })
@@ -12,7 +11,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-    Plants.getById(req.params.id)
+    Plants.findById(req.params.id)
     .then(plants=>{
         res.json(plants)
     })

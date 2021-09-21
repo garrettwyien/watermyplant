@@ -4,15 +4,21 @@ function find() {
     return db('users')
 }
 
+function findById(id){
+    return db("users")
+    .where({ id })
+    .first();
+}
+
 async function add(newUser){
-    const [user] = await db('users')
-        .insert(newUser, ['username', 'password', 'phoneNumber'])
-    return user
+    const [user_id] = await db("users")
+    .insert(newUser);
+    return findById(user_id)
 }
 
 module.exports ={
     find,
-    // findBy,
-    // add,
+    findById,
+    add,
     // edit,
 };

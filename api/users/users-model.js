@@ -16,9 +16,14 @@ async function add(newUser){
     return findById(user_id)
 }
 
+function findBy(filter) {
+    return db("users")
+    .where(filter);
+  }
+
 module.exports ={
     find,
     findById,
     add,
-    // edit,
+    findBy,
 };

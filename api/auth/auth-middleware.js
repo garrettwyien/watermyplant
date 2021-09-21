@@ -53,9 +53,37 @@ function createUserObject(req,res,next){
     req.newUserObj = newUserObj
 }
 
+function tokenBuilder(user){
+    const payload ={ 
+      subject: user.user_id,
+      username: user.username,
+    }
+    const options = {
+      expiresIn: '1d',
+    }
+    const token = jwt.sign(payload, JWT_SECRET, options)
+    return token
+  }
+
+
+const checkUsernameExists = async (req, res, next) => {
+    try {
+      const usernameExists = await Users.findBy({ username: req.body.username})
+      if (usernameExists.length) {
+        req.user = usernameExists[0]
+        next()
+      } else {
+        next({ status: 422, message: 'invalid credentials'})
+      }
+    } catch (err) {
+      next(err)
+    }
+} 
 module.exports = {
     validatePayload,
     checkUsernameFree,
     restricted,
-    createUserObject
+    createUserObject,
+    tokenBuilder,
+    checkUsernameExists
     };

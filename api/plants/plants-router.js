@@ -1,3 +1,4 @@
+const { json } = require('express');
 const express = require('express');
 const Plants = require('./plants-model');
 const router = express.Router();
@@ -8,7 +9,7 @@ router.get('/', (req, res, next) => {
         res.json(plants)
     })
     .catch(next)
-})
+});
 
 router.get('/:id', (req, res, next) => {
     Plants.findById(req.params.id)
@@ -16,7 +17,15 @@ router.get('/:id', (req, res, next) => {
         res.json(plants)
     })
     .catch(next)
-})
+});
+
+router.post('/', (req,res,next)=>{
+    Plants.add(req.body)
+        .then(obj=>{
+            res.status(201).json(obj)
+        })
+        .catch(next)
+});
 
 
 router.delete('/:plant_id', (req,res,next) =>{
@@ -25,6 +34,6 @@ router.delete('/:plant_id', (req,res,next) =>{
         res.json(obj)
     })
     .catch(next)
-})
+});
 
 module.exports = router;

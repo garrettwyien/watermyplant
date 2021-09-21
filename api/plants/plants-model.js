@@ -19,10 +19,15 @@ const del = async plant_id => {
     return removeObj;
   }
 
+async function add(newPlant){
+    const [plant_id] = await db("plants")
+        .insert(newPlant);
+    return findById(plant_id)
+}
 module.exports ={
     find,
     findById,
-    // add,
+    add,
     // edit,
     del
 };

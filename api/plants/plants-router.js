@@ -1,7 +1,8 @@
-const { json } = require('express');
 const express = require('express');
 const Plants = require('./plants-model');
 const router = express.Router();
+const { validatePayload } = require('./plant-middleware')
+
 
 router.get('/', (req, res, next) => {
     Plants.find()
@@ -19,7 +20,7 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 });
 
-router.post('/', (req,res,next)=>{
+router.post('/', validatePayload, (req,res,next)=>{
     Plants.add(req.body)
         .then(obj=>{
             res.status(201).json(obj)

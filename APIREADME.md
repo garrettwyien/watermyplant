@@ -1,6 +1,6 @@
 ## Water My Plants API Reference Sheet
 
-### API URL `https://water-my-plants-bw3.herokuapp.com/api/`
+### API URL `https://water-my-plants-bw3.herokuapp.com/api`
 
 #### Create New User
 

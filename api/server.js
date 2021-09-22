@@ -10,7 +10,7 @@ const server = express()
 server.use(express.json())
 server.use(helmet())
 server.use(cors())
-server.use('/api/plants', restricted, plantsRouter)
+server.use('/api/plants', plantsRouter)
 server.use('/api/users', usersRouter)
 
 server.use((err, req, res, next) => {

@@ -81,6 +81,8 @@ POST /plants/
 GET /plants/:plant_id
 ```
 
+*Returns single plant object*
+
 ---------------------------------------------------------
 
 #### Edit Plant (**Authorization Required!**)
@@ -89,7 +91,7 @@ GET /plants/:plant_id
 PUT /plants/:plant_id
 ```
 
-*Response includes edited user-item*
+*Response includes edited plant*
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
@@ -106,6 +108,6 @@ PUT /plants/:plant_id
 DELETE /plants/:plant_id
 ```
 
-*Response includes deleted user-item*
+*Response includes deleted plant*
 
 ---------------------------------------------------------

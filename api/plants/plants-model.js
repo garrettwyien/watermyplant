@@ -19,15 +19,33 @@ const del = async plant_id => {
     return removeObj;
   }
 
+function findBy(filter) {
+    return db("plants")
+    .where(filter);
+  }
+
+
 async function add(newPlant){
     const [plant_id] = await db("plants")
         .insert(newPlant);
     return findById(plant_id)
 }
+
+async function edit(plant_id, changes) {
+    const editedPlants = await db('plants')
+    .where('plant_id', plant_id)
+    .update(changes)
+    .first();
+    return editedPlants
+}
+
+
+
 module.exports ={
     find,
     findById,
     add,
-    // edit,
-    del
+    findBy,
+    del,
+    edit
 };

@@ -1,7 +1,7 @@
 const express = require('express');
 const Plants = require('./plants-model');
 const router = express.Router();
-const { validatePayload, checkSpeciesFree } = require('./plant-middleware')
+const { validatePayload, validateEdit, checkSpeciesFree } = require('./plant-middleware')
 
 
 router.get('/', (req, res, next) => {
@@ -37,4 +37,11 @@ router.delete('/:plant_id', (req,res,next) =>{
     .catch(next)
 });
 
+router.put('/:plant_id', validateEdit, (req,res,next)=>{
+    Plants.edit(req.params.plant_id, req.body)
+        .then(obj=>{
+            res.json(obj)
+        })
+        .catch(next)
+})
 module.exports = router;

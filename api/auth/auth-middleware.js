@@ -1,7 +1,7 @@
 const Users = require('../users/users-model');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require("../secrets");
-
+const bcrypt = require ('bcryptjs');
 
 function validatePayload(req,res,next){
     const { username, password } = req.body;

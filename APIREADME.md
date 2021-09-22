@@ -86,7 +86,6 @@ GET /plants/:plant_id
 ---------------------------------------------------------
 
 #### Edit Plant (**Authorization Required!**)
-#### NOT FUNCTIONAL YET
 ```
 PUT /plants/:plant_id
 ```

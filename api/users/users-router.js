@@ -19,7 +19,8 @@ router.post('/register', validatePayload, checkUsernameFree, createUserObject, (
 
 router.post('/login', validatePayload, checkUsernameExists, (req, res, next) => {
     const { password } = req.body;
-    if (bcrypt.compareSync(password, req.user.password)){
+    const hash  = bcrypt.hashSync(password)
+    if (bcrypt.compareSync(hash, req.user.password)){
       const token = tokenBuilder(req.user)
       res.json({
         message:`welcome, ${req.user.username}`,

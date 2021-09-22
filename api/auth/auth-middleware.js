@@ -73,7 +73,7 @@ const checkUsernameExists = async (req, res, next) => {
         req.user = usernameExists
         next()
       } else {
-        next({ status: 422, message: 'invalid credentials'})
+        next({ status: 422, message: 'invalid username'})
       }
     } catch (err) {
       next(err)

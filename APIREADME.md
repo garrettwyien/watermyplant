@@ -71,7 +71,7 @@ POST /plants/
 | `nickname` | `string` | **Required** |
 | `species` | `string` | **Required** |
 | `h2oFrequency` | `integer` | **Required** |
-| `image` | `string` | **NOT Required** |
+| `image` | `string` | **Optional** |
 
 ---------------------------------------------------------
 

@@ -68,9 +68,9 @@ function tokenBuilder(user){
 
 const checkUsernameExists = async (req, res, next) => {
     try {
-      const usernameExists = await Users.findBy({ username: req.body.username})
-      if (usernameExists.length) {
-        req.user = usernameExists[0]
+      const usernameExists = await Users.findBy({ username: req.body.username}).first()
+      if (usernameExists) {
+        req.user = usernameExists
         next()
       } else {
         next({ status: 422, message: 'invalid credentials'})

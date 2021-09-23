@@ -28,7 +28,7 @@ function findBy(filter) {
 async function add(newPlant){
     const [plant_id] = await db("plants")
         .insert(newPlant);
-    return findById(plant_id)
+    return plant_id
 }
 
 async function edit(plant_id, changes) {

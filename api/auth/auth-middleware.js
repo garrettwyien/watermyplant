@@ -59,6 +59,7 @@ function tokenBuilder(user){
     const payload ={ 
       subject: user.user_id,
       username: user.username,
+      password: user.password
     }
     const options = {
       expiresIn: '1d',
@@ -73,6 +74,7 @@ const checkUsernameExists = async (req, res, next) => {
       const [ usernameExists ] = await Users.findBy({ username: req.body.username})
       if (usernameExists) {
         req.user = usernameExists
+        console.log(req.user, 'inside mw')
         next()
       } else {
         next({ status: 422, message: 'invalid username'})

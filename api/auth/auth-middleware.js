@@ -33,13 +33,15 @@ function restricted(req,res,next){
         token,
         JWT_SECRET,
         (err, decoded)=>{
-            if (err) return next({
+            if (err) {
+                 next({
                 status:401, message:'token invalid'
             })
+        } else {
             req.decodeJwt = decoded
             next()
         }
-    )
+        })
 };
 
 function createUserObject(req,res,next){
@@ -68,7 +70,7 @@ function tokenBuilder(user){
 
 const checkUsernameExists = async (req, res, next) => {
     try {
-      const usernameExists = await Users.findBy({ username: req.body.username}).first()
+      const [ usernameExists ] = await Users.findBy({ username: req.body.username})
       if (usernameExists) {
         req.user = usernameExists
         next()

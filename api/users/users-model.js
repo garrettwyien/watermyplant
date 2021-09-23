@@ -6,14 +6,14 @@ function find() {
 
 function findById(id){
     return db("users")
-    .where({ id })
+    .where("user_id", id)
     .first();
 }
 
 async function add(newUser){
-    const [user_id] = await db("users")
-    .insert(newUser);
-    return findById(user_id)
+    const [user] = await db("users")
+    .insert(newUser, ['username', 'password'])
+    return user
 }
 
 function findBy(filter) {

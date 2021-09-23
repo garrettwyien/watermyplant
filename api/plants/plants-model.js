@@ -31,7 +31,7 @@ async function add(newPlant){
 }
 
 async function edit(plant_id, changes) {
-    const editedPlants = await db('plants')
+    await db('plants')
     .where('plant_id', plant_id)
     .update(changes)
     return findById(plant_id)

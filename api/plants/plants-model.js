@@ -1,8 +1,7 @@
 const db = require('../data/db-config');
 
 function find(){
-    return db("plants")
-    .select('plants.nickname', 'plants.species', 'plants.h2oFrequency');
+    return db("plants");
 }
 
 function findById(plant_id){
@@ -35,8 +34,7 @@ async function edit(plant_id, changes) {
     const editedPlants = await db('plants')
     .where('plant_id', plant_id)
     .update(changes)
-    .first();
-    return editedPlants
+    return findById(plant_id)
 }
 
 

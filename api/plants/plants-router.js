@@ -1,7 +1,7 @@
 const express = require('express');
 const Plants = require('./plants-model');
 const router = express.Router();
-const { validatePayload, validateEdit, checkSpeciesFree } = require('./plant-middleware')
+const { validatePayload, validateEdit, checkSpeciesFree, createPlantObject } = require('./plant-middleware')
 
 
 router.get('/', (req, res, next) => {
@@ -20,8 +20,8 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 });
 
-router.post('/', validatePayload, checkSpeciesFree, (req,res,next)=>{
-    Plants.add(req.body)
+router.post('/', validatePayload, checkSpeciesFree, createPlantObject, (req,res,next)=>{
+    Plants.add(req.newPlantObj)
         .then(obj=>{
             res.status(201).json(obj)
         })

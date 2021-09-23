@@ -30,9 +30,21 @@ function validateEdit(req,res,next){
     }
 };
 
+function createPlantObject(req,res,next){
+    const { nickname, species, h2oFrequency, image } = req.body;
+    const newPlantObj = { 
+        nickname: nickname,
+        species: species,
+        h2oFrequency: h2oFrequency,
+        image: image
+    };
+    req.newPlantObj = newPlantObj
+    next()
+}
 
 module.exports = {
     validatePayload,
     checkSpeciesFree,
-    validateEdit
+    validateEdit,
+    createPlantObject
 };

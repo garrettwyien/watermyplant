@@ -18,10 +18,7 @@ router.post('/register', validatePayload, checkUsernameFree, createUserObject, (
 });
 
 router.post('/login', validatePayload, checkUsernameExists, (req, res, next) => {
-
-  console.log(req.body.password, req.user.password, bcrypt.compareSync(req.body.password, req.user.password))
     if (bcrypt.compareSync(req.body.password, req.user.password)){
-      console.log(req.user, 'made it past mw')
       const token = tokenBuilder(req.user)
       res.json({
         message:`welcome, ${req.user.username}`,

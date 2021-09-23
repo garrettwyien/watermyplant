@@ -12,7 +12,7 @@ function findById(id){
 
 async function add(newUser){
     const [user] = await db("users")
-    .insert(newUser, ['username', 'password'])
+    .insert(newUser, ['username', 'password', 'phoneNumber'])
     return user
 }
 

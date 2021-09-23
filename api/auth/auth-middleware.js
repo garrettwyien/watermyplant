@@ -53,6 +53,7 @@ function createUserObject(req,res,next){
         phoneNumber: phoneNumber
     };
     req.newUserObj = newUserObj
+    next()
 }
 
 function tokenBuilder(user){
@@ -74,7 +75,6 @@ const checkUsernameExists = async (req, res, next) => {
       const [ usernameExists ] = await Users.findBy({ username: req.body.username})
       if (usernameExists) {
         req.user = usernameExists
-        console.log(req.user, 'inside mw')
         next()
       } else {
         next({ status: 422, message: 'invalid username'})
